@@ -32,6 +32,7 @@ public class MyTest {
 	
 	public void aTestExample() {
 		logger.info("running aTestExample: INFO and above level logging enabled");
+		System.out.println("java.library.path: " + System.getProperty("java.library.path"));
 		AssertJUnit.assertEquals(4, 2+2);
 	}
 }
