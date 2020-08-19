@@ -30,7 +30,7 @@
 		</variations>
 		<command>false; \
 	$(TEST_STATUS)</command>
-		<platformRequirements>os.linux,arch.x86,bits.64</platformRequirements>
+		<!-- <platformRequirements>os.linux,arch.x86,bits.64</platformRequirements> -->
 		<levels>
 			<level>extended</level>
 		</levels>
@@ -54,7 +54,7 @@
 	-groups $(TEST_GROUP) \
 	-excludegroups $(DEFAULT_EXCLUDE); \
 	$(TEST_STATUS)</command>
-		<platformRequirements>os.linux,arch.x86,bits.64</platformRequirements>
+		<!-- <platformRequirements>os.linux,arch.x86,bits.64</platformRequirements> -->
 		<levels>
 			<level>extended</level>
 		</levels>
