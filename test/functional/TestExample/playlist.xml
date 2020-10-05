@@ -27,6 +27,7 @@
 		<testCaseName>testExample1</testCaseName>
 		<variations>
 			<variation>-Xint</variation>
+            <variation>-Xint</variation>
 		</variations>
 		<command>false; \
 	$(TEST_STATUS)</command>
