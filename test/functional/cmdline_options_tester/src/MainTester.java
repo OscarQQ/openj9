@@ -110,7 +110,8 @@ public class MainTester {
 		 */
 		if ((true == nonZeroExitCodeWhenError) && (0 < suite.getFailureCount())) {
 			System.exit(2);
-		}
+        }
+        System.out.println("reach here");
 	}
 	
 	/**
