@@ -215,7 +215,7 @@ public class SoftmxAdvanceTest {
 			} else {
 				/*If the released memory is more than 10% of the original softmx value, the test assumes that
 				 *  disclaim memory is happening*/
-				if (diff > new_softmx_value * 0.10) {
+				if (diff > new_softmx_value * 0.05) {
 					logRelease(postMemSize, preMemSize);
 					isMemRelease = true;
 				}
