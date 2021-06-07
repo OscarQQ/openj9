@@ -148,6 +148,8 @@ SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-excepti
 
 	<target name="TCK.run.tests.ddrext" depends="TCK.destroy.cache">
 		<echo>Running the DDR Extension Test</echo>
+		<touch file="abc.txt"/>
+		<fail message="make it fail here"/> 
 		<java-wrapper fork="true" jvm="${JAVA_COMMAND}" classname="j9vm.test.ddrext.AutoRun"
 			timeout="1200000" failonerror="true">
 			<common-elements>
