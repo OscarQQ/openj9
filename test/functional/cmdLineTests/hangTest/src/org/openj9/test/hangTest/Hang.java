@@ -20,26 +20,53 @@
  * SPDX-License-Identifier: EPL-2.0 OR Apache-2.0 OR GPL-2.0 WITH Classpath-exception-2.0 OR LicenseRef-GPL-2.0 WITH Assembly-exception
  *******************************************************************************/
 package org.openj9.test.hangTest;
+import java.io.IOException;
 
 public class Hang {
-	public static void main(String [] args) {
-		System.out.println("here");
-		Hook hook = new Hook();
-		System.out.println("adding hook ... ");
-		Runtime.getRuntime().addShutdownHook(hook);
-		System.out.println("Exiting ... ");
-	}
+    public static void main(String [] args) {
+        Hook hook = new Hook();
+        System.out.println("adding hook ... ");
+        Runtime.getRuntime().addShutdownHook(hook);
+        hook.start();
+        new Sleep().start();
+        System.out.println("Exiting ... ");
+    }
 
-	private static class Hook extends Thread {
-		public void run() {
-			while(true) {
-				try {
-					System.out.println("Sleep inside Hook ....");
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+    private static class Hook extends Thread {
+        public void run() {
+			int i = 0;
+            while(i < 200) {
+                try {
+                    System.out.println("Sleep inside Hook ...." + i);
+                    Thread.sleep(1000);
+					i++;
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    private static class Sleep extends Thread {
+        public void run() {
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                long pid = ProcessHandle.current().pid();
+                System.out.println(pid);
+                // (javacore filename set on command line)
+                String cmdLine = "kill -3 " + pid;
+                System.out.println("Executing another process: " + cmdLine);
+                Runtime rt = Runtime.getRuntime();
+                @SuppressWarnings("unused")
+                Process pr = rt.exec(cmdLine);
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+                System.err.print("Failed to send kill signal, IOException");
+                System.exit(-2);
+            }
+        }
+    }
 }

@@ -27,9 +27,8 @@
 <suite id="J9 hang test" timeout="15000">
 
 	<test id="hang">
-		<exec command="$EXE -cp $JARPATH org.openj9.test.hangTest.Hang" />
-		<exec command="sleep 5" />
-		<exec command="pkill -9 -f Hang" />
+		<exec command="$EXE$ -cp $JARPATH$ org.openj9.test.hangTest.Hang" />
 		<output type="success" regex="no">Exiting ...</output>
+		<output type="failure" regex="no">Segmentation fault</output>
 	</test>
 </suite>
